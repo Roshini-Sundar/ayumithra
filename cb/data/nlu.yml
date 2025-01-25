@@ -1,0 +1,259 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
+      - howdy
+
+  - intent: goodbye
+    examples: |
+      - bye
+      - goodbye
+      - see you
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: affirm
+    examples: |
+      - yes
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+      - sure
+      - of course
+
+  - intent: deny
+    examples: |
+      - no
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not really
+      - not really
+
+  - intent: mood_great
+    examples: |
+      - perfect
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
+      - I'm feeling great
+      - I'm good
+      - I'm awesome
+
+  - intent: mood_unhappy
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
+      - I'm sad
+      - I'm feeling down
+      - not feeling great
+
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?
+      - is this bot real?
+      - prove you're a bot
+
+  - intent: sore_throat_remedy
+    examples: |
+      - What should I do for a sore throat?
+      - How can I treat a sore throat naturally?
+      - Any home remedy for a sore throat?
+
+  - intent: cough_remedy
+    examples: |
+      - How can I treat a cough with Ayurveda?
+      - What is a natural remedy for a cough?
+      - Any home remedy for persistent cough?
+
+  - intent: indigestion_remedy
+    examples: |
+      - How can I get rid of indigestion?
+      - What is a good remedy for bloating?
+      - How to improve digestion naturally?
+
+  - intent: acidity_remedy
+    examples: |
+      - What can I do for acidity?
+      - Any Ayurvedic remedy for acidity?
+      - How to balance stomach acid levels?
+
+  - intent: headache_remedy
+    examples: |
+      - How can I relieve a headache naturally?
+      - What can I do for a headache using Ayurvedic methods?
+      - Any remedy for tension headaches?
+
+  - intent: immunity_boost_remedy
+    examples: |
+      - How can I boost my immune system naturally?
+      - What is a good remedy for immunity?
+      - Any Ayurvedic remedy for boosting immunity?
+
+  - intent: dry_skin_remedy
+    examples: |
+      - How can I treat dry skin naturally?
+      - What should I do for dry skin using Ayurvedic remedies?
+      - Any home remedy for dry skin?
+
+  - intent: insomnia_remedy
+    examples: |
+      - What can I do for better sleep?
+      - Any Ayurvedic solution for insomnia?
+      - How can I sleep better naturally?
+
+  - intent: joint_pain_remedy
+    examples: |
+      - How can I relieve joint pain?
+      - Any Ayurvedic remedy for arthritis?
+      - What natural treatments help with joint pain?
+
+  - intent: detox_remedy
+    examples: |
+      - How can I detoxify my body naturally?
+      - What is an Ayurvedic remedy for detoxification?
+      - Any natural ways to cleanse the body?
+
+  - intent: weight_loss_remedy
+    examples: |
+      - How to lose weight naturally?
+      - Remedy for weight loss
+      - I want to lose weight. Any suggestions?
+      - What can I do to reduce weight?
+      - Natural treatment for weight loss
+
+  - intent: face_glow_remedy
+    examples: |
+      - How to make my face glow?
+      - Remedy for glowing skin
+      - I want brighter skin. Any remedies?
+      - How to enhance face glow naturally?
+      - Natural remedies for skin glow
+
+  - intent: black_spots_remedy
+    examples: |
+      - How to remove black spots naturally?
+      - Remedy for black spots
+      - My face has black spots. Any solutions?
+      - Natural treatment for black spots
+      - How to get rid of dark spots?
+
+  - intent: dark_circles_remedy
+    examples: |
+      - Remedy for dark circles
+      - How to get rid of dark circles?
+      - My eyes have dark circles. Help!
+      - Natural treatment for under-eye circles
+      - Suggestions for reducing dark circles
+
+  - intent: hair_fall_remedy
+    examples: |
+      - Remedy for hair fall
+      - My hair is falling out. What should I do?
+      - How to stop hair fall naturally?
+      - Natural remedies for hair fall
+      - How to promote hair growth?
+
+  - intent: dandruff_remedy
+    examples: |
+      - How to get rid of dandruff?
+      - Remedy for dandruff
+      - My scalp is flaky. Any remedies?
+      - Suggestions for treating dandruff
+      - Natural remedies for scalp issues
+
+  - intent: pimples_remedy
+    examples: |
+      - Remedy for pimples
+      - I have pimples. What should I do?
+      - Natural treatment for acne
+      - How to reduce pimples naturally?
+      - How to clear acne at home?
+
+  - intent: oily_skin_remedy
+    examples: |
+      - My skin is very oily. Help!
+      - Remedy for oily skin
+      - How to control oily skin naturally?
+      - Suggestions for reducing oiliness
+      - Natural treatment for oily skin
+
+  - intent: dry_hair_remedy
+    examples: |
+      - My hair is very dry. What can I do?
+      - Remedy for dry hair
+      - How to moisturize dry hair naturally?
+      - Natural treatment for rough hair
+      - Suggestions for nourishing hair
+
+  - intent: bad_breath_remedy
+    examples: |
+      - How to get rid of bad breath?
+      - Remedy for bad breath
+      - My breath smells. Help!
+      - Suggestions for fresh breath
+      - Natural ways to cure bad breath
+
+  - intent: ask_question
+    examples: |
+      - What is the capital of France?
+      - Tell me about machine learning.
+      - How does the internet work?
+      - what are the uses of turmeric?
+      - can you tell about
+      - explain in detail about jaundice
+
+  - intent: bot_command
+    examples: |
+      - /bot
+      - call gemini
+      - trigger gemini

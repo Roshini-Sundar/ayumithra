@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url("https://t4.ftcdn.net/jpg/05/78/45/21/360_F_578452196_2szXN92U1RtPLGUvuFB4QiNQlQWtlMKq.jpg");
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        .forum-container {
+            display: flex;
+            flex-direction: row;
+            margin: 50px auto;
+            max-width: 1200px;
+        }
+
+        .posts-section {
+            flex: 3;
+            background-color: rgba(255, 255, 255, 0.8);  /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            margin-right: 20px;
+            padding: 20px;
+            overflow-y: auto;
+            height: 90vh;
+        }
+
+        .post {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+        }
+
+        .post:last-child {
+            border-bottom: none;
+        }
+
+        .post-title {
+            color: #973d06;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .post-content {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .post-author {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .translate-section {
+            margin-top: 10px;
+        }
+
+        .add-post-section {
+            flex: 2;
+            background-color: rgba(255, 255, 255, 0.8);  /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 50px;
+            margin-left: 25px;
+            padding: 20px;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            background-color: #b37928;
+            border: none;
+            color: white;
+            border-radius: 25px;
+        }
+
+        .btn-custom:hover {
+            background-color: #7a4510;
+        }
+
+        .like-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: red;
+            cursor: pointer;
+        }
+
+        .like-button:hover {
+            color: darkred;
+        }
+
+        .btn-home {
+            margin-top: 20px;
+            background-color: #2a288d;
+            color: white;
+            border: none;
+            border-radius: 25px;
+        }
+
+        .btn-home:hover {
+            background-color: #2e4e92;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #2a288d;
+        }
+        .navbar .navbar-brand, .navbar .nav-link {
+            color: white !important;
+        }
+        .navbar .navbar-brand:hover, .navbar .nav-link:hover {
+            color: #c8c8c8 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Forum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/homepage">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="forum-container">
+        <!-- Left Section: Posts -->
+        <div class="posts-section" id="posts">
+            <h3 class="text-center" style="color: #973d06;">Posts</h3>
+            <br><br>
+            <div class="d-flex justify-content-center align-items-center" style="height: 65%;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section: Add Post -->
+        <div class="add-post-section">
+            <h3 style="color: #973d06;">Add a Post</h3>
+            <form id="addPostForm">
+                <div class="form-group">
+                    <label for="postTitle">Post Title</label>
+                    <input type="text" id="postTitle" class="form-control" placeholder="Enter title" required>
+                </div>
+                <div class="form-group">
+                    <label for="postContent">Post Content</label>
+                    <textarea id="postContent" class="form-control" rows="5" placeholder="Enter content" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-custom btn-block">Post</button>
+            </form>
+            <br><br>
+            <button class="btn btn-home btn-block" onclick="window.location.href='/homepage';">Go Back to Home</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1/firebase.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCEYJc7AgJg1HbLLDKAoTOm9No7jEoTmOw",
+            authDomain: "ayumithra-b2ab1.firebaseapp.com",
+            databaseURL: "https://ayumithra-b2ab1-default-rtdb.firebaseio.com",
+            projectId: "ayumithra-b2ab1",
+            storageBucket: "ayumithra-b2ab1.firebasestorage.app",
+            messagingSenderId: "464837414960",
+            appId: "1:464837414960:web:b4e5a19c7aea272f1c5df5"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const forumDb = firebase.database().ref("forumPosts");
+        const postsContainer = document.getElementById("posts");
+
+        const username = localStorage.getItem("username") || "Anonymous";
+
+        forumDb.on("value", (snapshot) => {
+            postsContainer.innerHTML = "";
+            const posts = [];
+            snapshot.forEach((childSnapshot) => {
+                const post = childSnapshot.val();
+                posts.push(post);
+            });
+
+            posts.sort((a, b) => b.timestamp - a.timestamp);
+
+            posts.forEach((post, index) => {
+                const date = new Date(post.timestamp);
+                const formattedDate = date.toLocaleString();
+
+                let likes = localStorage.getItem(`likes_${post.timestamp}`) || 0;
+
+                const postElement = `
+                    <div class="post" id="post-${post.timestamp}">
+                        <h4 class="post-title">${post.title}</h4>
+                        <p class="post-content" id="content-${post.timestamp}">${post.content}</p>
+                        <p class="post-author">Posted by: ${post.author} | ${formattedDate}</p>
+                        <div class="translate-section">
+                            <select id="language-${post.timestamp}">
+                                <option value="hi">Hindi</option>
+                                <option value="ta">Tamil</option>
+                                <option value="en">English</option>
+                            </select>
+                            <button class="btn btn-sm btn-secondary" onclick="translatePost(${post.timestamp})">Translate</button>
+                        </div>
+                        <div class="like-section">
+                            <button class="like-button" onclick="likePost(${post.timestamp})">
+                                ❤️ <span id="like-count-${post.timestamp}">${likes}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                postsContainer.innerHTML += postElement;
+            });
+        });
+
+        document.getElementById("addPostForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const title = document.getElementById("postTitle").value.trim();
+            const content = document.getElementById("postContent").value.trim();
+
+            if (title && content) {
+                const timestamp = Date.now();
+                forumDb.push({ title, content, author: username, timestamp })
+                    .then(() => {
+                        alert("Post added successfully!");
+                        document.getElementById("addPostForm").reset();
+                    })
+                    .catch((error) => {
+                        console.error("Error adding post:", error);
+                        alert("An error occurred while adding the post.");
+                    });
+            } else {
+                alert("Please fill in all fields!");
+            }
+        });
+
+        function translatePost(timestamp) {
+            const contentElement = document.getElementById(`content-${timestamp}`);
+            const language = document.getElementById(`language-${timestamp}`).value;
+
+            fetch("/translate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text: contentElement.innerText, target_lang: language })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.translatedContent) {
+                    contentElement.innerText = data.translatedContent;
+                } else {
+                    alert("Translation failed!");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        function likePost(timestamp) {
+            let likes = parseInt(localStorage.getItem(`likes_${timestamp}`)) || 0;
+            likes++;
+            localStorage.setItem(`likes_${timestamp}`, likes);
+            document.getElementById(`like-count-${timestamp}`).innerText = likes;
+        }
+    </script>
+</body>
+</html>

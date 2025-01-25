@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styling */
+        body {
+            background-image: url("https://static.vecteezy.com/system/resources/thumbnails/041/406/644/small_2x/ai-generated-candlelit-table-with-flowers-on-blue-surface-free-photo.jpeg");
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff; /* White text for better contrast */
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to right, #2e8b57, #006400);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffcccb !important;
+        }
+
+        .navbar-toggler-icon {
+            background-color: white;
+            border-radius: 2px;
+        }
+
+        /* Main Card Styling */
+        .home-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            max-width: 700px;
+            margin-top: 100px; /* Ensures it doesn’t overlap with the navbar */
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .home-title {
+            color: #006400;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .home-title2 {
+            color: #2e8b57;
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .home-title {
+                font-size: 2rem;
+            }
+
+            .home-title2 {
+                font-size: 1rem;
+            }
+
+            .home-card {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" style="color: white;">Home page</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forum">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profilepage">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" id="logoutLink">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Card -->
+    <div class="home-card">
+        <h1 class="home-title">Hello, <span id="usernameDisplay"></span>! 👋</h1>
+        <h3 class="home-title2">"Nurture your health 🌿, embrace natural remedies 🌸 – Your wellness, your way!"</h3>
+    
+        <p class="lead mt-4 text-dark">Welcome to a world where natural wellness is at your fingertips. Explore, learn, and empower yourself with chatbot and  community insights. Ready to take charge of your health the natural way?</p>
+        <div class="mt-5">
+            <a href="/chat" class="btn btn-success btn-lg">CHATBOT</a>
+        </div>
+    </div>    
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script to Handle Username and Logout -->
+    <script>
+        // Retrieve the username from localStorage and display it
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.getElementById('usernameDisplay').innerText = username;
+        } else {
+            // Redirect to profile page if username is not set
+            window.location.href = "/";
+        }
+
+        // Handle logout action
+        document.getElementById('logoutLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            localStorage.removeItem('username');
+            alert('You have been logged out successfully.');
+            window.location.href = "/";
+        });
+    </script>
+</body>
+</html>

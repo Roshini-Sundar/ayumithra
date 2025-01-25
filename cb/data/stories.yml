@@ -1,0 +1,167 @@
+version: "3.1"
+
+stories:
+  - story: greet and respond
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - story: goodbye conversation
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: ask a question
+    steps:
+      - intent: ask_question
+      - action: action_call_gemini_api
+      - action: utter_answer_from_gemini  # Sends back the response from Gemini API
+
+  - story: happy mood
+    steps:
+      - intent: mood_great
+      - action: utter_happy
+
+  - story: unhappy mood
+    steps:
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+
+  - story: bot challenge
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+
+  - story: bot command and get answer from Gemini
+    steps:
+      - intent: bot_command
+      - action: utter_call_gemini  # Ask Gemini for the answer
+      - action: action_call_gemini_api  # Call custom action to interact with Gemini
+      - action: utter_answer_from_gemini  # Return the answer from Gemini
+
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye
+
+  - story: sore throat remedy
+    steps:
+      - intent: sore_throat_remedy
+      - action: utter_sore_throat_remedy
+
+  - story: cough remedy
+    steps:
+      - intent: cough_remedy
+      - action: utter_cough_remedy
+
+  - story: indigestion remedy
+    steps:
+      - intent: indigestion_remedy
+      - action: utter_indigestion_remedy
+
+  - story: acidity remedy
+    steps:
+      - intent: acidity_remedy
+      - action: utter_acidity_remedy
+
+  - story: headache remedy
+    steps:
+      - intent: headache_remedy
+      - action: utter_headache_remedy
+
+  - story: immunity boost remedy
+    steps:
+      - intent: immunity_boost_remedy
+      - action: utter_immunity_boost_remedy
+
+  - story: dry skin remedy
+    steps:
+      - intent: dry_skin_remedy
+      - action: utter_dry_skin_remedy
+
+  - story: insomnia remedy
+    steps:
+      - intent: insomnia_remedy
+      - action: utter_insomnia_remedy
+
+  - story: joint pain remedy
+    steps:
+      - intent: joint_pain_remedy
+      - action: utter_joint_pain_remedy
+
+  - story: detox remedy
+    steps:
+      - intent: detox_remedy
+      - action: utter_detox_remedy
+
+  - story: weight loss remedy
+    steps:
+      - intent: weight_loss_remedy
+      - action: utter_weight_loss_remedy
+
+  - story: face glow remedy
+    steps:
+      - intent: face_glow_remedy
+      - action: utter_face_glow_remedy
+
+  - story: black spots remedy
+    steps:
+      - intent: black_spots_remedy
+      - action: utter_black_spots_remedy
+
+  - story: dark circles remedy
+    steps:
+      - intent: dark_circles_remedy
+      - action: utter_dark_circles_remedy
+
+  - story: hair fall remedy
+    steps:
+      - intent: hair_fall_remedy
+      - action: utter_hair_fall_remedy
+
+  - story: dandruff remedy
+    steps:
+      - intent: dandruff_remedy
+      - action: utter_dandruff_remedy
+
+  - story: pimples remedy
+    steps:
+      - intent: pimples_remedy
+      - action: utter_pimples_remedy
+
+  - story: oily skin remedy
+    steps:
+      - intent: oily_skin_remedy
+      - action: utter_oily_skin_remedy
+
+  - story: dry hair remedy
+    steps:
+      - intent: dry_hair_remedy
+      - action: utter_dry_hair_remedy
+
+  - story: bad breath remedy
+    steps:
+      - intent: bad_breath_remedy
+      - action: utter_bad_breath_remedy

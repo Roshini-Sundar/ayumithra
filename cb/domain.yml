@@ -1,0 +1,131 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - ask_question
+  - bot_command  # Intent for the '/bot' command
+  - sore_throat_remedy
+  - cough_remedy
+  - indigestion_remedy
+  - acidity_remedy
+  - headache_remedy
+  - immunity_boost_remedy
+  - dry_skin_remedy
+  - insomnia_remedy
+  - joint_pain_remedy
+  - detox_remedy
+  - weight_loss_remedy
+  - face_glow_remedy
+  - black_spots_remedy
+  - dark_circles_remedy
+  - hair_fall_remedy
+  - dandruff_remedy
+  - pimples_remedy
+  - oily_skin_remedy
+  - dry_hair_remedy
+  - bad_breath_remedy
+
+responses:
+  utter_greet:
+    - text: "Hey! How are you?"
+
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_happy:
+    - text: "Great, carry on!"
+
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+  utter_bot_challenge:
+    - text: "Are you challenging me?"
+
+  utter_ask_question:
+    - text: "Sure! What's your question?"
+
+  utter_answer_from_gemini:
+    - text: "Here is the information I found for you:"
+
+  utter_call_gemini:
+    - text: "I am asking Gemini for the answer..."
+
+  utter_sore_throat_remedy:
+    - text: "You can mix 1/2 teaspoon of turmeric and black pepper into a glass of warm milk. Drink this mixture twice a day for relief from sore throat."
+
+  utter_cough_remedy:
+    - text: "Boil a cup of water with 1-2 cloves of garlic, 1/2 teaspoon of ginger, and a pinch of black pepper. Drink this mixture 2-3 times a day to help with cough."
+
+  utter_indigestion_remedy:
+    - text: "Take 1/2 teaspoon of carom seeds (ajwain) with a pinch of black salt after meals to improve digestion and relieve bloating."
+
+  utter_acidity_remedy:
+    - text: "Drink a glass of warm water with 1 teaspoon of honey and 1/2 teaspoon of fresh lime juice in the morning on an empty stomach."
+
+  utter_headache_remedy:
+    - text: "Apply a paste of ground sandalwood and rose water on your forehead and below your eyes. Rest in a quiet, cool room for relief from headaches."
+
+  utter_immunity_boost_remedy:
+    - text: "Drink a warm tea made from ginger, tulsi leaves, and honey. This mixture can help strengthen your immunity over time."
+
+  utter_dry_skin_remedy:
+    - text: "Massage your skin with a mixture of coconut oil and turmeric. This will help moisturize and nourish dry skin."
+
+  utter_insomnia_remedy:
+    - text: "Drink warm milk with 1/4 teaspoon of nutmeg before bed. Nutmeg has calming properties that can help you fall asleep peacefully."
+
+  utter_joint_pain_remedy:
+    - text: "Mix 1 teaspoon of turmeric with a pinch of black pepper and take it with warm water to reduce inflammation and relieve joint pain."
+
+  utter_detox_remedy:
+    - text: "Drink a glass of warm water with 1 teaspoon of cumin seeds and a pinch of salt in the morning to support detoxification."
+
+  utter_weight_loss_remedy:
+    - text: "Drink a glass of warm water with lemon juice and a teaspoon of honey on an empty stomach every morning. Combine this with regular exercise for effective weight loss."
+
+  utter_face_glow_remedy:
+    - text: "Mix a tablespoon of honey with a pinch of turmeric and apply it as a face mask. Leave it on for 15-20 minutes, then rinse with lukewarm water. Do this twice a week for glowing skin."
+
+  utter_black_spots_remedy:
+    - text: "Apply a paste of sandalwood powder and rose water to the affected areas. Leave it on for 15 minutes and rinse off. Use this daily for best results."
+
+  utter_dark_circles_remedy:
+    - text: "Place chilled cucumber slices or used green tea bags on your eyes for 10-15 minutes daily to reduce dark circles."
+
+  utter_hair_fall_remedy:
+    - text: "Massage your scalp with warm coconut oil or castor oil twice a week to reduce hair fall and promote healthy hair growth."
+
+  utter_dandruff_remedy:
+    - text: "Mix a tablespoon of lemon juice with coconut oil and apply it to your scalp. Leave it for 30 minutes and wash with mild shampoo to reduce dandruff."
+
+  utter_pimples_remedy:
+    - text: "Apply a mixture of neem leaf paste and a pinch of turmeric to the affected area. Leave it for 15 minutes and rinse with warm water."
+
+  utter_oily_skin_remedy:
+    - text: "Prepare a face mask with multani mitti (fuller's earth) and rose water. Apply it on your face and wash off once dry to control oiliness."
+
+  utter_dry_hair_remedy:
+    - text: "Mash a ripe banana and mix it with 2 tablespoons of honey. Apply the mixture to your hair, leave it on for 20 minutes, and rinse off with warm water for nourished hair."
+
+  utter_bad_breath_remedy:
+    - text: "Chew fresh mint leaves or drink a cup of warm water with 1/2 teaspoon of cinnamon powder to combat bad breath."
+
+actions:
+  - action_call_gemini_api  # Custom action to call Gemini API
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

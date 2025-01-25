@@ -1,0 +1,51 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# C extensions
+*.so
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Node modules
+node_modules/
+
+# Logs and databases
+*.log
+*.sqlite3
+db.sqlite3
+
+# IDE files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Rasa specific
+.rasa/
+
+# Static / compiled files
+staticfiles/
+*.js.map
+*.css.map
+
+# Configurations
+*.yaml~
+config.yml
+credentials.yml

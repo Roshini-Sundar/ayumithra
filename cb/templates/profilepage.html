@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       
+    body {
+        background-image: url("https://t3.ftcdn.net/jpg/07/12/06/24/360_F_712062417_6V21YYslsQGvf2qvQveceVIwIAWickEP.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: 'Poppins', sans-serif;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .profile-card {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 40px;
+        width: 450px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        position: absolute;
+        bottom: 170px;  /* Position it 30px from the bottom */
+        left: 30px;    /* Position it 30px from the left */
+    }
+
+
+        .profile-title {
+            color: #006400;  /* Dark Green */
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .profile-info {
+            color: #0d1511;  /* Medium green color */
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .btn-custom {
+            background-color: #006400;  /* Dark Green */
+            border: none;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #004d1a;  /* Darker Green on hover */
+        }
+
+        span {
+            font-weight: bold;
+            color: #3b7a4f;  /* Slightly lighter green */
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to right, #2e8b57, #006400);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10; /* Ensure navbar stays on top */
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffcccb !important;
+        }
+
+        .navbar-toggler-icon {
+            background-color: white;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/homepage">Home page</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forum">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profilepage">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" id="logoutLink">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="profile-card">
+        <h2 class="profile-title">Your Profile</h2>
+        <p class="profile-info" id="usernameDisplay">Mitra ID: <span>Loading...</span></p>
+        <p class="profile-info" id="emailidDisplay">E-mail ID: <span>Loading...</span></p>
+        <p class="profile-info" id="dobDisplay">Date of Birth: <span>Loading...</span></p>
+        <button class="btn btn-custom" id="goBack">Go Back to Home</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1/firebase.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCEYJc7AgJg1HbLLDKAoTOm9No7jEoTmOw",
+            authDomain: "ayumithra-b2ab1.firebaseapp.com",
+            databaseURL: "https://ayumithra-b2ab1-default-rtdb.firebaseio.com",
+            projectId: "ayumithra-b2ab1",
+            storageBucket: "ayumithra-b2ab1.firebasestorage.app",
+            messagingSenderId: "464837414960",
+            appId: "1:464837414960:web:b4e5a19c7aea272f1c5df5"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const profiledb = firebase.database().ref("profiles");
+
+        // Retrieve username from localStorage
+        const username = localStorage.getItem("username");
+        if (username) {
+            // Fetch profile details from Firebase
+            profiledb.orderByChild("username").equalTo(username).once("value", (snapshot) => {
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        const profileData = childSnapshot.val();
+                        document.getElementById("usernameDisplay").innerHTML = `Mitra ID: <span>${profileData.username}</span>`;
+                        document.getElementById("emailidDisplay").innerHTML = `Email ID: <span>${profileData.email}</span>`;
+                        document.getElementById("dobDisplay").innerHTML = `Date of Birth: <span>${profileData.dob}</span>`;
+                    });
+                } else {
+                    alert("Profile not found! Redirecting to the home page.");
+                    window.location.href = "/homepage";
+                }
+            });
+        } else {
+            alert("No user logged in! Redirecting to the profile creation page.");
+            window.location.href = "/profile.html";
+        }
+
+        // Handle Go Back button
+        document.getElementById("goBack").addEventListener("click", () => {
+            window.location.href = "/homepage";
+        });
+    </script>
+</body>
+</html>
